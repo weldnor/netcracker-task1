@@ -15,7 +15,7 @@ public class ContractRepositoryTest {
 
     private final Contract firstContract = new InternetContract(
             15,
-            new Client(42, "Alex", Gender.MALE, "202408573923"),
+            new Client(42, "Alex", Gender.MALE, "202408573923", LocalDate.of(2000, 6, 1)),
             LocalDate.of(2005, 7, 17),
             LocalDate.of(20021, 3, 9),
             1024
@@ -23,7 +23,7 @@ public class ContractRepositoryTest {
 
     private final Contract secondContract = new InternetContract(
             21,
-            new Client(39, "Andrey", Gender.MALE, "09823313897"),
+            new Client(39, "Andrey", Gender.MALE, "09823313897", LocalDate.of(2003, 9, 23)),
             LocalDate.of(2009, 8, 14),
             LocalDate.of(2022, 9, 2),
             2048
@@ -31,7 +31,7 @@ public class ContractRepositoryTest {
 
     private final Contract thirdContract = new InternetContract(
             18,
-            new Client(39, "Lisa", Gender.FEMALE, "79283742309"),
+            new Client(39, "Lisa", Gender.FEMALE, "79283742309", LocalDate.of(1998, 3, 18)),
             LocalDate.of(2015, 1, 29),
             LocalDate.of(2025, 5, 6),
             512
