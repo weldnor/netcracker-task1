@@ -1,26 +1,14 @@
 package com.weldnor.netcracker.task1.contract;
 
-import com.weldnor.netcracker.task1.client.Client;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import java.time.LocalDate;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+@SuperBuilder
 public class DigitalTvContract extends Contract {
     private ChannelPackage channelPackage;
-
-    public DigitalTvContract(
-            long id,
-            Client client,
-            LocalDate startDate,
-            LocalDate expirationDate,
-            ChannelPackage channelPackage
-    ) {
-        super(id, client, startDate, expirationDate);
-        this.channelPackage = channelPackage;
-    }
 }

@@ -1,13 +1,13 @@
 package com.weldnor.netcracker.task1.client;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.Period;
 
 @Data
-@AllArgsConstructor
+@Builder
 public class Client {
     private long id;
     private String fullName;
