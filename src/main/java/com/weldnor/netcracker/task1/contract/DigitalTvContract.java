@@ -13,8 +13,14 @@ import java.time.LocalDate;
 public class DigitalTvContract extends Contract {
     private ChannelPackage channelPackage;
 
-    public DigitalTvContract(Client client, LocalDate startDate, LocalDate expirationDate, ChannelPackage channelPackage) {
-        super(client, startDate, expirationDate);
+    public DigitalTvContract(
+            long id,
+            Client client,
+            LocalDate startDate,
+            LocalDate expirationDate,
+            ChannelPackage channelPackage
+    ) {
+        super(id, client, startDate, expirationDate);
         this.channelPackage = channelPackage;
     }
 }

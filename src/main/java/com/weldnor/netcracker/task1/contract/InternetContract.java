@@ -13,8 +13,14 @@ import java.time.LocalDate;
 public class InternetContract extends Contract {
     private int maxSpeed;
 
-    public InternetContract(Client client, LocalDate startDate, LocalDate expirationDate, int maxSpeed) {
-        super(client, startDate, expirationDate);
+    public InternetContract(
+        long id,
+        Client client,
+        LocalDate startDate,
+        LocalDate expirationDate,
+        int maxSpeed
+    ) {
+        super(id, client, startDate, expirationDate);
         this.maxSpeed = maxSpeed;
     }
 }

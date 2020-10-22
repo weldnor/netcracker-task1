@@ -15,9 +15,16 @@ public class CellularContract extends Contract {
     int megabytes;
     int minutes;
 
-    public CellularContract(Client client, LocalDate startDate, LocalDate expirationDate,
-                            int sms, int megabytes, int minutes) {
-        super(client, startDate, expirationDate);
+    public CellularContract(
+            Client client,
+            LocalDate startDate,
+            LocalDate expirationDate,
+            long id,
+            int sms,
+            int megabytes,
+            int minutes
+    ) {
+        super(id, client, startDate, expirationDate);
         this.sms = sms;
         this.megabytes = megabytes;
         this.minutes = minutes;

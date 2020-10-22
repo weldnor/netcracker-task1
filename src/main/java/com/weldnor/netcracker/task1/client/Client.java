@@ -10,4 +10,5 @@ public class Client {
     private String fullName;
     private Gender gender;
     private String passport; //FIXME?
+    //TODO age
 }

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class Contract {
+    private long id;
     private Client client;
     private LocalDate startDate;
     private LocalDate expirationDate;
