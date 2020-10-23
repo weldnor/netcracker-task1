@@ -3,4 +3,4 @@
 
 ## Сборка/запуск
 
-install exec:java -f pom.xml
+mvn package exec:java -f pom.xml
