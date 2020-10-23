@@ -15,6 +15,10 @@ public class Client {
     private String passport;
     private LocalDate birthDate;
 
+
+    /**
+     * @return возраст клиента
+     */
     public int getAge() {
         var currentDate = LocalDate.now();
         return Period.between(birthDate, currentDate).getYears();
