@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @ToString(callSuper = true)
 @SuperBuilder
 public class CellularContract extends Contract {
-    int sms;
-    int megabytes;
-    int minutes;
+    private int sms;
+    private int megabytes;
+    private int minutes;
 }
