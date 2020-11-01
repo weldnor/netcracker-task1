@@ -168,4 +168,54 @@ public class ContractRepositoryTest {
 
         assertThat(contractRepository.size()).isZero();
     }
+
+    @Test
+    public void findBy_RepositoryIsEmpty_ShouldReturnEmptyList() {
+        ContractRepository contractRepository = new ContractRepository();
+
+        // select all contracts
+        List<Contract> result = contractRepository.findBy(contract -> {
+            return contract.getId() == firstContract.getId();
+        });
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    public void findBy_SelectOneElement() throws ContractAlreadyExistException {
+        ContractRepository contractRepository = new ContractRepository();
+
+        contractRepository.add(firstContract);
+        contractRepository.add(thirdContract);
+        contractRepository.add(secondContract);
+        List<Contract> result = contractRepository.findBy(contract -> {
+            return contract.getId() == firstContract.getId();
+        });
+
+        assertThat(result).containsOnly(firstContract);
+    }
+
+    @Test
+    public void findBy_SelectSomeElements() throws ContractAlreadyExistException {
+        ContractRepository contractRepository = new ContractRepository();
+
+        contractRepository.add(firstContract);
+        contractRepository.add(thirdContract);
+        contractRepository.add(secondContract);
+        List<Contract> result = contractRepository.findBy(contract -> {
+            return contract.getId() == firstContract.getId() || contract.getId() == secondContract.getId();
+        });
+
+        assertThat(result).containsOnly(firstContract, secondContract);
+    }
+
+    @Test
+    public void sortBy_RepositoryIsEmpty() {
+        ContractRepository contractRepository = new ContractRepository();
+
+        assertThatCode(() -> contractRepository.sortBy((o1, o2) -> {
+            if (o1.getId() == o2.getId()) return 0;
+            return o1.getId() > o2.getId() ? 1 : -1;
+        })).doesNotThrowAnyException();
+    }
 }

@@ -1,10 +1,11 @@
 package com.weldnor.netcracker.task1.repository;
 
 import com.weldnor.netcracker.task1.contract.Contract;
+import com.weldnor.netcracker.task1.sorter.QuickSorter;
+import com.weldnor.netcracker.task1.sorter.Sorter;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * Класс для хранения контрактов.
@@ -14,6 +15,8 @@ public class ContractRepository {
     private static final int INITIAL_SIZE = 8;
     private Contract[] data;
     private int size = 0;
+
+    private final Sorter<Contract> sorter = new QuickSorter<>();
 
     public ContractRepository() {
         data = new Contract[INITIAL_SIZE];
@@ -75,10 +78,7 @@ public class ContractRepository {
      * @return @link{{@link List<Contract>}} из всех хранящихся в репозитории контрактов.
      */
     public List<Contract> getAll() {
-        List<Contract> result = new LinkedList<>();
-        for (int i = 0; i < size; i++) {
-            result.add(data[i]);
-        }
+        List<Contract> result = new LinkedList<>(Arrays.asList(data).subList(0, size));
         return result;
     }
 
@@ -107,6 +107,26 @@ public class ContractRepository {
         return -1;
     }
 
+    public List<Contract> findBy(Predicate<Contract> predicate) {
+        List<Contract> result = new ArrayList<>();
+
+        for (int i = 0; i < size(); i++) {
+            Contract curr = data[i];
+            if (predicate.test(curr)) {
+                result.add(curr);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Сортировка контрактов по заданному критерию.
+     *
+     * @param comparator компаратор для сравнения контрактов.
+     */
+    public void sortBy(Comparator<Contract> comparator) {
+        sorter.sort(data, comparator, 0, size - 1);
+    }
 
     /**
      * Получение количества контрактов  в репозитории.
