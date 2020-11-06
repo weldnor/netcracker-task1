@@ -6,22 +6,26 @@ import java.util.List;
 
 /**
  * Быстрая сортировка.
+ *
+ * @param <T> @param <T> тип сортируемых объектов
  */
 public class QuickSorter<T> implements Sorter<T> {
 
     /**
      * Сортировка массива методом быстрой сортировки.
      *
-     * @param array      массив, часть которого будет отсортирована.
-     * @param comparator критерий, по которому сравниваются элементы.
-     * @param start      начальный индекс.
-     * @param end        конечный индекс.
+     * @param array      массив, часть которого будет отсортирована
+     * @param comparator критерий, по которому сравниваются элементы
+     * @param start      начальный индекс
+     * @param end        конечный индекс
      */
     public void sort(T[] array, Comparator<T> comparator, int start, int end) {
         int size = end - start;
 
-        if (size <= 1)
+        if (size <= 1) {
             return;
+        }
+
 
         int middleIndex = (end + start) / 2;
         T middle = array[middleIndex];
@@ -44,10 +48,12 @@ public class QuickSorter<T> implements Sorter<T> {
             array[start + lessThenMiddle.size() + i] = greaterThenMiddle.get(i);
         }
 
-        if (lessThenMiddle.size() > 0)
+        if (lessThenMiddle.size() > 0) {
             sort(array, comparator, start, middleIndex);
-        if (greaterThenMiddle.size() > 0)
+        }
+        if (greaterThenMiddle.size() > 0) {
             sort(array, comparator, middleIndex + 1, end);
+        }
     }
 
 }

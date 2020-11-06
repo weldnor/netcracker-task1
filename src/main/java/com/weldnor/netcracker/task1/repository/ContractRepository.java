@@ -18,6 +18,9 @@ public class ContractRepository {
 
     private final Sorter<Contract> sorter = new QuickSorter<>();
 
+    /**
+     * Создание пустого репозитория с начальным размером {@value INITIAL_SIZE}.
+     */
     public ContractRepository() {
         data = new Contract[INITIAL_SIZE];
     }
@@ -26,14 +29,14 @@ public class ContractRepository {
      * Добавление контракта в репозиторий.
      * Если контракт с таким id уже существует, то вызывается ошибка {@link ContractAlreadyExistException}.
      *
-     * @param contract добавляемый контракт.
-     * @throws ContractAlreadyExistException контакт с таким id уже существует.
+     * @param contract добавляемый контракт
+     * @throws ContractAlreadyExistException если контакт с таким id уже существует
      */
     public void add(Contract contract) throws ContractAlreadyExistException {
-        long contract_id = contract.getId();
+        long contractId = contract.getId();
 
-        if (contains(contract_id)) {
-            throw new ContractAlreadyExistException("contract with id: " + contract_id + " already exist");
+        if (contains(contractId)) {
+            throw new ContractAlreadyExistException("contract with id: " + contractId + " already exist");
         }
 
         if (isFull()) {
@@ -48,26 +51,33 @@ public class ContractRepository {
     }
 
     private void expand() {
-        int new_size = data.length * 2;
-        Contract[] new_data = new Contract[new_size];
-        System.arraycopy(data, 0, new_data, 0, size);
-        data = new_data;
+        int newSize = data.length * 2;
+        Contract[] newData = new Contract[newSize];
+        System.arraycopy(data, 0, newData, 0, size);
+        data = newData;
     }
 
     /**
-     * Проверкa существования контракта с заданным id
+     * Проверка существования контракта с заданным id.
      *
-     * @param contract_id id контракта, который мы пытаемся найти.
-     * @return true, если контракт существует, false, если нет.
+     * @param contractId id контракта, который мы пытаемся найти
+     * @return true, если контракт существует, false, если нет
      */
-    public boolean contains(long contract_id) {
-        return get(contract_id).isPresent();
+    public boolean contains(long contractId) {
+        return get(contractId).isPresent();
     }
 
-    public Optional<Contract> get(long contract_id) {
+    /**
+     * Получение контракта по id.
+     *
+     * @param contractId id контракта
+     * @return Optional с контрактом, если он найден
+     */
+    public Optional<Contract> get(long contractId) {
         for (int i = 0; i < size; i++) {
-            if (data[i].getId() == contract_id)
+            if (data[i].getId() == contractId) {
                 return Optional.of(data[i]);
+            }
         }
         return Optional.empty();
     }
@@ -75,23 +85,23 @@ public class ContractRepository {
     /**
      * Получение всех контрактов.
      *
-     * @return @link{{@link List<Contract>}} из всех хранящихся в репозитории контрактов.
+     * @return {@link List} из всех хранящихся в репозитории контрактов
      */
     public List<Contract> getAll() {
-        List<Contract> result = new LinkedList<>(Arrays.asList(data).subList(0, size));
-        return result;
+        return new LinkedList<>(Arrays.asList(data).subList(0, size));
     }
 
     /**
      * Удаление контракта по его id.
      *
-     * @param contract_id id удаляемого контракта.
+     * @param contractId id удаляемого контракта
      */
-    public void delete(long contract_id) {
-        int index = findIndex(contract_id);
+    public void delete(long contractId) {
+        int index = findIndex(contractId);
 
-        if (index == -1)
+        if (index == -1) {
             return;
+        }
 
         if (size - index + 1 >= 0) {
             System.arraycopy(data, index + 1, data, index, size - index + 1);
@@ -99,14 +109,21 @@ public class ContractRepository {
         size--;
     }
 
-    private int findIndex(long contract_id) {
+    private int findIndex(long contractId) {
         for (int i = 0; i < size; i++) {
-            if (data[i].getId() == contract_id)
+            if (data[i].getId() == contractId) {
                 return i;
+            }
         }
         return -1;
     }
 
+    /**
+     * Поиск контракта по заданному критерию.
+     *
+     * @param predicate критерий поиска
+     * @return {{@link List<Contract>}}
+     */
     public List<Contract> findBy(Predicate<Contract> predicate) {
         List<Contract> result = new ArrayList<>();
 
@@ -122,7 +139,7 @@ public class ContractRepository {
     /**
      * Сортировка контрактов по заданному критерию.
      *
-     * @param comparator компаратор для сравнения контрактов.
+     * @param comparator компаратор для сравнения контрактов
      */
     public void sortBy(Comparator<Contract> comparator) {
         sorter.sort(data, comparator, 0, size - 1);
@@ -131,7 +148,7 @@ public class ContractRepository {
     /**
      * Получение количества контрактов  в репозитории.
      *
-     * @return количество контрактов.
+     * @return количество контрактов
      */
     public int size() {
         return size;

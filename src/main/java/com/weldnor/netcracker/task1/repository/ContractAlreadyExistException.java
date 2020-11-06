@@ -1,7 +1,10 @@
 package com.weldnor.netcracker.task1.repository;
 
 public class ContractAlreadyExistException extends Exception {
-    public ContractAlreadyExistException(String message) {
+    /**
+     * @param message сообщение об ошибке
+     */
+    public ContractAlreadyExistException(final String message) {
         super(message);
     }
 }
