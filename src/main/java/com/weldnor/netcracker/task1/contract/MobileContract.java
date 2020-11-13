@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @SuperBuilder
-public class CellularContract extends Contract {
+public class MobileContract extends Contract {
     private int sms;
     private int megabytes;
     private int minutes;

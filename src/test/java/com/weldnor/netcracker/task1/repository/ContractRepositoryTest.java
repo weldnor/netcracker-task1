@@ -40,7 +40,7 @@ public class ContractRepositoryTest {
             .channelPackage(ChannelPackage.STANDARD)
             .build();
 
-    private final Contract thirdContract = CellularContract.builder()
+    private final Contract thirdContract = MobileContract.builder()
             .id(32)
             .client(Client.builder()
                     .id(23)
