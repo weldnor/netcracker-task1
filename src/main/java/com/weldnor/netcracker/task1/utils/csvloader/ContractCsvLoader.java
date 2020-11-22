@@ -1,10 +1,10 @@
-package com.weldnor.netcracker.task1.utils;
+package com.weldnor.netcracker.task1.utils.csvloader;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import com.weldnor.netcracker.task1.client.Client;
-import com.weldnor.netcracker.task1.client.Gender;
-import com.weldnor.netcracker.task1.contract.*;
+import com.weldnor.netcracker.task1.entity.client.Client;
+import com.weldnor.netcracker.task1.entity.client.Gender;
+import com.weldnor.netcracker.task1.entity.contract.*;
 import com.weldnor.netcracker.task1.repository.ContractRepository;
 
 import java.io.FileReader;

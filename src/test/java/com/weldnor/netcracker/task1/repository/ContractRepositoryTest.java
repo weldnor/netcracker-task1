@@ -1,8 +1,8 @@
 package com.weldnor.netcracker.task1.repository;
 
-import com.weldnor.netcracker.task1.client.Client;
-import com.weldnor.netcracker.task1.client.Gender;
-import com.weldnor.netcracker.task1.contract.*;
+import com.weldnor.netcracker.task1.entity.client.Client;
+import com.weldnor.netcracker.task1.entity.client.Gender;
+import com.weldnor.netcracker.task1.entity.contract.*;
 import org.junit.Test;
 
 import java.time.LocalDate;

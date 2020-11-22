@@ -1,4 +1,4 @@
-package com.weldnor.netcracker.task1.contract;
+package com.weldnor.netcracker.task1.entity.contract;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

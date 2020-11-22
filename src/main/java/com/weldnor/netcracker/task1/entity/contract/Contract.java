@@ -1,6 +1,6 @@
-package com.weldnor.netcracker.task1.contract;
+package com.weldnor.netcracker.task1.entity.contract;
 
-import com.weldnor.netcracker.task1.client.Client;
+import com.weldnor.netcracker.task1.entity.client.Client;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

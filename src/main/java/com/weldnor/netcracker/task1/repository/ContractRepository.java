@@ -1,6 +1,6 @@
 package com.weldnor.netcracker.task1.repository;
 
-import com.weldnor.netcracker.task1.contract.Contract;
+import com.weldnor.netcracker.task1.entity.contract.Contract;
 import com.weldnor.netcracker.task1.sorter.QuickSorter;
 import com.weldnor.netcracker.task1.sorter.Sorter;
 

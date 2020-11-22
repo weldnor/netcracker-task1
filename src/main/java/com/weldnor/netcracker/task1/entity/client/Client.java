@@ -1,4 +1,4 @@
-package com.weldnor.netcracker.task1.client;
+package com.weldnor.netcracker.task1.entity.client;
 
 import lombok.Builder;
 import lombok.Data;

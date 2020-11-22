@@ -1,4 +1,4 @@
-package com.weldnor.netcracker.task1.contract;
+package com.weldnor.netcracker.task1.entity.contract;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,8 +9,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @SuperBuilder
-public class MobileContract extends Contract {
-    private int sms;
-    private int megabytes;
-    private int minutes;
+public class DigitalTvContract extends Contract {
+    private ChannelPackage channelPackage;
 }

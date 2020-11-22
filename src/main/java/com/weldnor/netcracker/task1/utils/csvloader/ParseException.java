@@ -1,4 +1,4 @@
-package com.weldnor.netcracker.task1.utils;
+package com.weldnor.netcracker.task1.utils.csvloader;
 
 public class ParseException extends Exception {
     /**
