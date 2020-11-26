@@ -1,11 +1,11 @@
 package com.weldnor.netcracker.task1.utils;
 
-import com.opencsv.exceptions.CsvException;
+
+import com.weldnor.netcracker.task1.csvloader.ContractCsvLoader;
 import com.weldnor.netcracker.task1.entity.client.Client;
 import com.weldnor.netcracker.task1.entity.client.Gender;
 import com.weldnor.netcracker.task1.entity.contract.*;
 import com.weldnor.netcracker.task1.repository.ContractRepository;
-import com.weldnor.netcracker.task1.utils.csvloader.ContractCsvLoader;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -60,7 +60,7 @@ public class ContractCsvLoaderTest {
 
 
     @Test
-    public void loadContractsToRepositoryFromCsvFile() throws IOException, CsvException {
+    public void loadContractsToRepositoryFromCsvFile() throws IOException {
         ContractRepository repository = new ContractRepository();
 
         ContractCsvLoader.loadContractsToRepositoryFromCsvFile(repository, "src/test/data/contracts.csv");

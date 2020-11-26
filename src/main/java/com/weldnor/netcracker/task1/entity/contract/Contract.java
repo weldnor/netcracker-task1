@@ -8,8 +8,8 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 @SuperBuilder
+@NoArgsConstructor
 public abstract class Contract {
     private long id;
     private Client client;
