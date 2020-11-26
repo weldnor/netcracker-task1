@@ -5,4 +5,5 @@
 <suppressions>
     <suppress files="App.java" checks="HideUtilityClassConstructor"/>
     <suppress files="App.java" checks="MissingJavadocMethod"/>
+    <suppress files="ContractCsvLoader.java" checks="MagicNumber"/>
 </suppressions>
