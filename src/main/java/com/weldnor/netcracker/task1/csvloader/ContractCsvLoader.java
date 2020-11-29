@@ -3,7 +3,13 @@ package com.weldnor.netcracker.task1.csvloader;
 import com.opencsv.CSVReader;
 import com.weldnor.netcracker.task1.csvloader.parser.ContractParser;
 import com.weldnor.netcracker.task1.entity.contract.Contract;
+import com.weldnor.netcracker.task1.entity.contract.DigitalTvContract;
+import com.weldnor.netcracker.task1.entity.contract.InternetContract;
+import com.weldnor.netcracker.task1.entity.contract.MobileContract;
 import com.weldnor.netcracker.task1.repository.ContractRepository;
+import com.weldnor.netcracker.task1.utils.validator.contract.DigitalTvContractValidator;
+import com.weldnor.netcracker.task1.utils.validator.contract.InternetContractValidator;
+import com.weldnor.netcracker.task1.utils.validator.contract.MobileContractValidator;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,12 +50,29 @@ public final class ContractCsvLoader {
 
             try {
                 Contract contract = contractParser.parse(params);
-                repository.add(contract);
+                if (isContractValid(contract)) {
+                    repository.add(contract);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
+    }
 
+    private static boolean isContractValid(Contract contract) {
+        if (contract instanceof DigitalTvContract) {
+            DigitalTvContractValidator validator = new DigitalTvContractValidator();
+            return validator.isValid((DigitalTvContract) contract);
+        }
+        if (contract instanceof InternetContract) {
+            InternetContractValidator validator = new InternetContractValidator();
+            return validator.isValid((InternetContract) contract);
+        }
+        if (contract instanceof MobileContract) {
+            MobileContractValidator validator = new MobileContractValidator();
+            return validator.isValid((MobileContract) contract);
+        }
+        return false; // FIXME?
     }
 }
