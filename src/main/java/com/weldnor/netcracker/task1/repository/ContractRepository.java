@@ -1,8 +1,8 @@
 package com.weldnor.netcracker.task1.repository;
 
 import com.weldnor.netcracker.task1.entity.contract.Contract;
-import com.weldnor.netcracker.task1.sorter.QuickSorter;
-import com.weldnor.netcracker.task1.sorter.Sorter;
+import com.weldnor.netcracker.task1.utils.sorter.QuickSorter;
+import com.weldnor.netcracker.task1.utils.sorter.Sorter;
 
 import java.util.*;
 import java.util.function.Predicate;

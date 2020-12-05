@@ -1,9 +1,7 @@
-package com.weldnor.netcracker.task1.csvloader.parser;
+package com.weldnor.netcracker.task1.utils.parser;
 
 
 import com.weldnor.netcracker.task1.entity.contract.MobileContract;
-import com.weldnor.netcracker.task1.utils.parser.ParseException;
-import com.weldnor.netcracker.task1.utils.parser.Parser;
 
 import java.util.Map;
 

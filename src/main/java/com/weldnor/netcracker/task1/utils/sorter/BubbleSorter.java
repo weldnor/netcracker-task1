@@ -1,4 +1,4 @@
-package com.weldnor.netcracker.task1.sorter;
+package com.weldnor.netcracker.task1.utils.sorter;
 
 import java.util.Comparator;
 

@@ -1,9 +1,9 @@
-package com.weldnor.netcracker.task1.csvloader;
+package com.weldnor.netcracker.task1.utils.csvloader;
 
 import com.opencsv.CSVReader;
-import com.weldnor.netcracker.task1.csvloader.parser.ContractParser;
 import com.weldnor.netcracker.task1.entity.contract.Contract;
 import com.weldnor.netcracker.task1.repository.ContractRepository;
+import com.weldnor.netcracker.task1.utils.parser.ContractParser;
 import com.weldnor.netcracker.task1.utils.validator.ValidationResult;
 import com.weldnor.netcracker.task1.utils.validator.ValidationResultStatus;
 import com.weldnor.netcracker.task1.utils.validator.Validator;
@@ -22,7 +22,7 @@ public final class ContractCsvLoader {
 
     private static final List<Validator<Contract>> VALIDATORS = new LinkedList<>();
 
-    {
+    static {
         VALIDATORS.add(new ContractValidator());
         VALIDATORS.add(new InternetContractSpeedValidator());
         VALIDATORS.add(new DigitalTvContractValidator());

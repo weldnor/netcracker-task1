@@ -1,7 +1,7 @@
 package com.weldnor.netcracker.task1.utils;
 
 
-import com.weldnor.netcracker.task1.csvloader.ContractCsvLoader;
+import com.weldnor.netcracker.task1.utils.csvloader.ContractCsvLoader;
 import com.weldnor.netcracker.task1.entity.client.Client;
 import com.weldnor.netcracker.task1.entity.client.Gender;
 import com.weldnor.netcracker.task1.entity.contract.*;
