@@ -1,18 +1,20 @@
-package com.weldnor.netcracker.task1.utils.validator.contract;
+package com.weldnor.netcracker.task1.utils.validator.contract.mobile;
 
 import com.weldnor.netcracker.task1.entity.contract.Contract;
+import com.weldnor.netcracker.task1.entity.contract.MobileContract;
 import com.weldnor.netcracker.task1.utils.validator.ValidationResult;
 import com.weldnor.netcracker.task1.utils.validator.Validator;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class ContractValidator implements Validator<Contract> {
+public class MobileContractValidator implements Validator<Contract> {
     private final List<Validator<Contract>> validators = new LinkedList<>();
 
     {
-        validators.add(new ContractClientValidator());
-        validators.add(new ContractDateValidator());
+        validators.add(new MobileContractMegabytesValidator());
+        validators.add(new MobileContractMinutesValidator());
+        validators.add(new MobileContractSmsValidator());
     }
 
     /**
@@ -21,10 +23,12 @@ public class ContractValidator implements Validator<Contract> {
      */
     @Override
     public List<ValidationResult> validate(Contract contract) {
+        MobileContract mobileContract = (MobileContract) contract;
+
         List<ValidationResult> result = new LinkedList<>();
         validators.stream()
-                .filter(validator -> canValidate(contract))
-                .map(validator -> validator.validate(contract))
+                .filter(validator -> validator.canValidate(mobileContract))
+                .map(validator -> validator.validate(mobileContract))
                 .filter(currentResult -> currentResult.size() != 0)
                 .forEach(result::addAll);
 
@@ -37,6 +41,7 @@ public class ContractValidator implements Validator<Contract> {
      */
     @Override
     public boolean canValidate(Object o) {
-        return o instanceof Contract;
+        return o instanceof MobileContract;
     }
+
 }

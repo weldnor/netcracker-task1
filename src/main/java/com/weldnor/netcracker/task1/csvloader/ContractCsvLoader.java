@@ -3,19 +3,31 @@ package com.weldnor.netcracker.task1.csvloader;
 import com.opencsv.CSVReader;
 import com.weldnor.netcracker.task1.csvloader.parser.ContractParser;
 import com.weldnor.netcracker.task1.entity.contract.Contract;
-import com.weldnor.netcracker.task1.entity.contract.DigitalTvContract;
-import com.weldnor.netcracker.task1.entity.contract.InternetContract;
-import com.weldnor.netcracker.task1.entity.contract.MobileContract;
 import com.weldnor.netcracker.task1.repository.ContractRepository;
-import com.weldnor.netcracker.task1.utils.validator.contract.DigitalTvContractValidator;
-import com.weldnor.netcracker.task1.utils.validator.contract.InternetContractValidator;
-import com.weldnor.netcracker.task1.utils.validator.contract.MobileContractValidator;
+import com.weldnor.netcracker.task1.utils.validator.ValidationResult;
+import com.weldnor.netcracker.task1.utils.validator.ValidationResultStatus;
+import com.weldnor.netcracker.task1.utils.validator.Validator;
+import com.weldnor.netcracker.task1.utils.validator.contract.ContractValidator;
+import com.weldnor.netcracker.task1.utils.validator.contract.digitaltv.DigitalTvContractValidator;
+import com.weldnor.netcracker.task1.utils.validator.contract.internet.InternetContractSpeedValidator;
+import com.weldnor.netcracker.task1.utils.validator.contract.mobile.MobileContractValidator;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public final class ContractCsvLoader {
+
+    private static final List<Validator<Contract>> VALIDATORS = new LinkedList<>();
+
+    {
+        VALIDATORS.add(new ContractValidator());
+        VALIDATORS.add(new InternetContractSpeedValidator());
+        VALIDATORS.add(new DigitalTvContractValidator());
+        VALIDATORS.add(new MobileContractValidator());
+    }
 
     private ContractCsvLoader() {
     }
@@ -61,18 +73,19 @@ public final class ContractCsvLoader {
     }
 
     private static boolean isContractValid(Contract contract) {
-        if (contract instanceof DigitalTvContract) {
-            DigitalTvContractValidator validator = new DigitalTvContractValidator();
-            return validator.isValid((DigitalTvContract) contract);
+        List<ValidationResult> results = new LinkedList<>();
+
+        VALIDATORS.stream()
+                .filter(validator -> validator.canValidate(contract))
+                .map(validator -> validator.validate(contract))
+                .filter(currentResult -> currentResult.size() != 0)
+                .forEach(results::addAll);
+
+        for (ValidationResult result : results) {
+            if (result.getStatus() == ValidationResultStatus.ERROR) {
+                return false;
+            }
         }
-        if (contract instanceof InternetContract) {
-            InternetContractValidator validator = new InternetContractValidator();
-            return validator.isValid((InternetContract) contract);
-        }
-        if (contract instanceof MobileContract) {
-            MobileContractValidator validator = new MobileContractValidator();
-            return validator.isValid((MobileContract) contract);
-        }
-        return false; // FIXME?
+        return true;
     }
 }

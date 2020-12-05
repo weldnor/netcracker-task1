@@ -19,7 +19,6 @@ public final class ContractCsvLoader {
     private ContractCsvLoader() {
     }
 
-
     /**
      * Загрузка {@link Contract контрактов} из csv файла в {@link ContractRepository репозиторий контрактов}.
      *
