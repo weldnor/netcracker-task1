@@ -1,9 +1,10 @@
 package com.weldnor.netcracker.task1.utils;
 
-import com.weldnor.netcracker.task1.client.Client;
-import com.weldnor.netcracker.task1.client.Gender;
-import com.weldnor.netcracker.task1.contract.*;
-import com.weldnor.netcracker.task1.csvloader.ContractCsvLoader;
+import com.weldnor.netcracker.task1.utils.csvloader.ContractCsvLoader;
+import com.weldnor.netcracker.task1.entity.client.Client;
+import com.weldnor.netcracker.task1.entity.client.Gender;
+import com.weldnor.netcracker.task1.entity.contract.*;
+
 import com.weldnor.netcracker.task1.repository.ContractRepository;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class ContractCsvLoaderTest {
                     .id(42)
                     .fullName("Alex")
                     .gender(Gender.MALE)
-                    .passport("202408573923")
+                    .passport("1000123456")
                     .birthDate(LocalDate.of(2000, 6, 1))
                     .build())
             .startDate(LocalDate.of(2005, 7, 17))
@@ -33,7 +34,7 @@ public class ContractCsvLoaderTest {
                     .id(23)
                     .fullName("Anton")
                     .gender(Gender.MALE)
-                    .passport("202408573923")
+                    .passport("1007653456")
                     .birthDate(LocalDate.of(2000, 6, 1))
                     .build())
             .startDate(LocalDate.of(2005, 7, 17))
@@ -47,7 +48,7 @@ public class ContractCsvLoaderTest {
                     .id(23)
                     .fullName("Liza")
                     .gender(Gender.FEMALE)
-                    .passport("123908213")
+                    .passport("0987654321")
                     .birthDate(LocalDate.of(2000, 6, 1))
                     .build())
             .startDate(LocalDate.of(2005, 7, 17))
