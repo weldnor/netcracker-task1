@@ -6,10 +6,8 @@ import java.util.List;
 
 /**
  * Быстрая сортировка.
- *
- * @param <T> @param <T> тип сортируемых объектов
  */
-public class QuickSorter<T> implements Sorter<T> {
+public class QuickSorter implements Sorter {
 
     /**
      * Сортировка массива методом быстрой сортировки.
@@ -19,7 +17,7 @@ public class QuickSorter<T> implements Sorter<T> {
      * @param start      начальный индекс
      * @param end        конечный индекс
      */
-    public void sort(T[] array, Comparator<T> comparator, int start, int end) {
+    public <T> void sort(T[] array, Comparator<T> comparator, int start, int end) {
         int size = end - start;
 
         if (size <= 1) {

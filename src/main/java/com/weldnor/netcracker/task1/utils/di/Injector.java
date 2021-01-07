@@ -77,7 +77,7 @@ public class Injector {
         if (Collection.class.isAssignableFrom(injectableField.getType())) {
             value = createInstances(dependencySubClasses);
         } else {
-            if (dependencySubClasses.size() > 0) {
+            if (dependencySubClasses.size() > 1) {
                 throw new RuntimeException("dependency subclasses count more then 1");
             }
             value = createInstance(dependencySubClasses.get(0));

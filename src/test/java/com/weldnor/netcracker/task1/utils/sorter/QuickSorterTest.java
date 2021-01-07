@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class QuickSorterTest {
-    private final Sorter<Integer> sorter = new QuickSorter<>();
+    private final Sorter sorter = new QuickSorter();
 
     private final Comparator<Integer> comp = (o1, o2) -> {
         if (o1.equals(o2)) return 0;

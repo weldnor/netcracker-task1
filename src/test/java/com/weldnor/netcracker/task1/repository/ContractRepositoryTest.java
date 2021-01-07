@@ -3,6 +3,7 @@ package com.weldnor.netcracker.task1.repository;
 import com.weldnor.netcracker.task1.entity.client.Client;
 import com.weldnor.netcracker.task1.entity.client.Gender;
 import com.weldnor.netcracker.task1.entity.contract.*;
+import com.weldnor.netcracker.task1.utils.di.Injector;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -211,7 +212,7 @@ public class ContractRepositoryTest {
 
     @Test
     public void sortBy_RepositoryIsEmpty() {
-        ContractRepository contractRepository = new ContractRepository();
+        ContractRepository contractRepository = Injector.inject(new ContractRepository());
 
         assertThatCode(() -> contractRepository.sortBy((o1, o2) -> {
             if (o1.getId() == o2.getId()) return 0;

@@ -2,7 +2,7 @@ package com.weldnor.netcracker.task1.utils.sorter;
 
 import java.util.Comparator;
 
-public interface Sorter<T> {
+public interface Sorter {
     /**
      * Метод для сортировки части массива по возрастанию.
      *
@@ -11,7 +11,7 @@ public interface Sorter<T> {
      * @param start      начальный индекс
      * @param end        конечный индекс
      */
-    void sort(T[] array, Comparator<T> comparator, int start, int end);
+    <T> void sort(T[] array, Comparator<T> comparator, int start, int end);
 
     /**
      * Метод для сортировки массива по возрастанию.
@@ -19,7 +19,7 @@ public interface Sorter<T> {
      * @param array      массив, который будет отсортирован
      * @param comparator критерий, по которому сравниваются элементы
      */
-    default void sort(T[] array, Comparator<T> comparator) {
+    default <T> void sort(T[] array, Comparator<T> comparator) {
         if (array.length > 1) {
             sort(array, comparator, 0, array.length - 1);
         }

@@ -1,7 +1,8 @@
 package com.weldnor.netcracker.task1.repository;
 
 import com.weldnor.netcracker.task1.entity.contract.Contract;
-import com.weldnor.netcracker.task1.utils.sorter.QuickSorter;
+import com.weldnor.netcracker.task1.utils.di.Configuration;
+import com.weldnor.netcracker.task1.utils.di.Injectable;
 import com.weldnor.netcracker.task1.utils.sorter.Sorter;
 
 import java.util.*;
@@ -10,13 +11,15 @@ import java.util.function.Predicate;
 /**
  * Класс для хранения контрактов.
  */
+@Configuration(packages = {"com.weldnor"})
 public class ContractRepository {
 
     private static final int INITIAL_SIZE = 8;
     private Contract[] data;
     private int size = 0;
 
-    private final Sorter<Contract> sorter = new QuickSorter<>();
+    @Injectable
+    private Sorter sorter;
 
     /**
      * Создание пустого репозитория с начальным размером {@value INITIAL_SIZE}.
