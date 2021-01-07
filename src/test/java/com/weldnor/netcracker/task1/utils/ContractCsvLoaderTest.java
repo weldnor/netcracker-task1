@@ -1,11 +1,11 @@
 package com.weldnor.netcracker.task1.utils;
 
-import com.weldnor.netcracker.task1.utils.csvloader.ContractCsvLoader;
 import com.weldnor.netcracker.task1.entity.client.Client;
 import com.weldnor.netcracker.task1.entity.client.Gender;
 import com.weldnor.netcracker.task1.entity.contract.*;
-
 import com.weldnor.netcracker.task1.repository.ContractRepository;
+import com.weldnor.netcracker.task1.utils.csvloader.ContractCsvLoader;
+import com.weldnor.netcracker.task1.utils.di.Injector;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -62,8 +62,9 @@ public class ContractCsvLoaderTest {
     @Test
     public void loadContractsToRepositoryFromCsvFile() throws IOException {
         ContractRepository repository = new ContractRepository();
+        ContractCsvLoader contractCsvLoader = Injector.inject(new ContractCsvLoader());
 
-        ContractCsvLoader.loadContractsToRepositoryFromCsvFile(repository, "src/test/data/contracts.csv");
+        contractCsvLoader.loadContractsToRepositoryFromCsvFile(repository, "src/test/data/contracts.csv");
 
         assertThat(repository.getAll()).contains(firstContract, secondContract, thirdContract);
     }

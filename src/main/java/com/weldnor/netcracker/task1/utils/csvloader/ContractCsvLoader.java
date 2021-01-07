@@ -3,14 +3,11 @@ package com.weldnor.netcracker.task1.utils.csvloader;
 import com.opencsv.CSVReader;
 import com.weldnor.netcracker.task1.entity.contract.Contract;
 import com.weldnor.netcracker.task1.repository.ContractRepository;
+import com.weldnor.netcracker.task1.utils.di.Configuration;
 import com.weldnor.netcracker.task1.utils.parser.ContractParser;
 import com.weldnor.netcracker.task1.utils.validator.ValidationResult;
 import com.weldnor.netcracker.task1.utils.validator.ValidationResultStatus;
 import com.weldnor.netcracker.task1.utils.validator.Validator;
-import com.weldnor.netcracker.task1.utils.validator.contract.ContractValidator;
-import com.weldnor.netcracker.task1.utils.validator.contract.digitaltv.DigitalTvContractValidator;
-import com.weldnor.netcracker.task1.utils.validator.contract.internet.InternetContractSpeedValidator;
-import com.weldnor.netcracker.task1.utils.validator.contract.mobile.MobileContractValidator;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,19 +15,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+@Configuration(packages = {"com.weldnor"})
 public final class ContractCsvLoader {
 
-    private static final List<Validator<Contract>> VALIDATORS = new LinkedList<>();
-
-    static {
-        VALIDATORS.add(new ContractValidator());
-        VALIDATORS.add(new InternetContractSpeedValidator());
-        VALIDATORS.add(new DigitalTvContractValidator());
-        VALIDATORS.add(new MobileContractValidator());
-    }
-
-    private ContractCsvLoader() {
-    }
+    private final List<Validator<Contract>> validators = new LinkedList<>();
 
 
     /**
@@ -40,7 +28,7 @@ public final class ContractCsvLoader {
      * @param path       путь к csv файлу
      * @throws IOException если не получается считать файл
      */
-    public static void loadContractsToRepositoryFromCsvFile(ContractRepository repository, String path)
+    public void loadContractsToRepositoryFromCsvFile(ContractRepository repository, String path)
             throws IOException {
         CSVReader reader = new CSVReader(new FileReader(path));
         ContractParser contractParser = new ContractParser();
@@ -72,10 +60,10 @@ public final class ContractCsvLoader {
         }
     }
 
-    private static boolean isContractValid(Contract contract) {
+    private boolean isContractValid(Contract contract) {
         List<ValidationResult> results = new LinkedList<>();
 
-        VALIDATORS.stream()
+        validators.stream()
                 .filter(validator -> validator.canValidate(contract))
                 .map(validator -> validator.validate(contract))
                 .filter(currentResult -> currentResult.size() != 0)
