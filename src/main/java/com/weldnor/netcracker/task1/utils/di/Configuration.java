@@ -8,5 +8,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Configuration {
+    /**
+     * @return пакеты, среди которых ищутся зависимости
+     */
     String[] packages();
 }

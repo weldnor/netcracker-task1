@@ -10,9 +10,18 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public class Injector {
+public final class Injector {
+    @SuppressWarnings("checkstyle:ConstantName")
     private static final Logger log = Logger.getLogger(Injector.class);
 
+    private Injector() {
+    }
+
+    /**
+     * @param object обьект, куда иньектируются зависимости
+     * @param <T>    тип обьекта
+     * @return обьект с примененными зависимостями
+     */
     public static <T> T inject(T object) {
         log.debug("inject " + object);
 

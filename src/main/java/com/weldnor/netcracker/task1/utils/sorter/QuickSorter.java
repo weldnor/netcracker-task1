@@ -12,6 +12,7 @@ public class QuickSorter implements Sorter {
     /**
      * Сортировка массива методом быстрой сортировки.
      *
+     * @param <T>        тип обьектов
      * @param array      массив, часть которого будет отсортирована
      * @param comparator критерий, по которому сравниваются элементы
      * @param start      начальный индекс
